@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.nyc_output/
+.nyc_coverage/
+*.zip
+*.tgz
+**/.terraform/
+**/terraform/.terraform.lock.hcl

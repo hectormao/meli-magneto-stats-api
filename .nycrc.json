@@ -1,0 +1,5 @@
+{
+    "reporter": "lcov",
+    "report-dir": ".nyc_coverage",
+    "exclude": ["**/*.spec.ts", "**/*.config.js", "**/*.config.ts", "**/test/**"]
+}

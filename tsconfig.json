@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "lib": ["es2017", "dom"],
+        "types": ["node","reflect-metadata"],
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "target": "es2017",
+        "module": "CommonJS",
+        "outDir": "dist",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "exclude": ["node_modules"]
+}
