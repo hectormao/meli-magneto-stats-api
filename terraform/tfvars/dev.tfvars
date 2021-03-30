@@ -1,0 +1,7 @@
+app_id = "meli-magneto-stats-api"
+app_env = "dev"
+region = "us-east-1"
+s3_tf = "meli-tfstate"
+lambda_package = "../meli-magneto-stats-api.zip"
+stat_name = "mutant_stats"
+stats_table = "magneto-stats-dev"

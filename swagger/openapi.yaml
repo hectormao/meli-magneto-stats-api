@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: MeLi Magneto Estadisticas de Mutantes API
+  description: API para consultar las estadisticas de verificación de ADN Mutante
+  version: 1.0.0
+tags:
+  - name: Magneto Mutante Estadisticas
+    description: Rest API Consulta estadisticas de mutante
+servers:
+  - url: https://70ebveca22.execute-api.us-east-1.amazonaws.com/dev/magneto/api/v1
+    description: Ambiente de Despliegue DEV (unico ambiente) de examen MeLi
+paths:
+  /stats:
+    get:
+      summary: Consulta Estadisticas de mutante
+      description: Consulta Estadisticas de mutante
+      tags:
+        - Magneto Mutante Estadisticas
+      responses:
+        "200":
+          description: Estadiscas actuales
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatResponse"
+              example:
+                count_human_dna: 60
+                count_mutant_dna: 40
+                ratio: 0.4
+        "404":
+          description: Acceso denegado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MutantResponse"
+              example:
+                code: 404
+                message: Stat Not Found
+        "403":
+          description: Acceso denegado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MutantResponse"
+              example:
+                code: 403
+                message: Forbidden
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MutantResponse"
+        "503":
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MutantResponse"
+security:
+  - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+  schemas:
+    StatResponse:
+      type: object
+      properties:
+        count_human_dna:
+          type: number
+          description: Cantidad de humanos validados
+        count_mutant_dna:
+          type: number
+          description: Cantidad de mutantes validados
+        ratio:
+          type: number
+          description: porcentaje de mutantes
+    MutantResponse:
+      type: object
+      properties:
+        code:
+          type: number
+          description: Codigo HTTP de la respuesta
+        message:
+          type: string
+          description: Mensaje de exito o error del proceso de chequeo
+      required:
+        - code
+        - message
